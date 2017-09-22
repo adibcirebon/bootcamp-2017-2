@@ -1,0 +1,13 @@
+# ini ignore untuk template project maven
+target/
+
+# ini ignorefile untuk configurasi text editor idea
+.idea/
+
+# ini ignorefile untuk configurasi text editor netbeans
+nbproject/
+
+
+# ini ingorefile untuk configurasi text editor eclipse
+.projects
+settings/
