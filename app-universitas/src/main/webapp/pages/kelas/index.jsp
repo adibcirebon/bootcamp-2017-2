@@ -31,7 +31,15 @@
                         <td>${k.id}</td>
                         <td>${k.nama}</td>
                         <td>${k.angkatan}</td>
-                        <td></td>
+                        <td>
+                            <a href="${pageContext.servletContext.contextPath}/kelas/update?id=${k.id}">Update</a>
+                            &nbsp;
+                            <form action="${pageContext.servletContext.contextPath}/kelas/delete" method="post">
+                                <input type="hidden" name="kelasId" value="${k.id}">
+                                <button type="submit">Hapus</button>
+                            </form>
+                            <a href="${pageContext.servletContext.contextPath}/kelas/delete?kelasId=${k.id}">Hapus link</a>
+                        </td>
                     </tr>                    
                 </c:forEach>
             </tbody>

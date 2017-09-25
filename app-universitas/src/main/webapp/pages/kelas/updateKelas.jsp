@@ -14,16 +14,16 @@
     <body>
         <h1>Form Kelas</h1>
         <!--${pageContext.servletContext.contextPath}-->
-        <form action="${pageContext.servletContext.contextPath}/kelas/new" method="post">
+        <form action="${pageContext.servletContext.contextPath}/kelas/update" method="post">
             
-            <input type="hidden" value="${kelas.id}">
+            <input type="hidden" value="${k.id}" name="kelasId">
             <div>
                 <label for="kelasName">Nama Kelas</label>
-                <input type="text" name="kelasName" id="kelasName" value="${kelas.nama}">
+                <input type="text" name="kelasName" id="kelasName" value="${k.nama}">
             </div>
             <div>
                 <label for="kelasAngkatan">Angkatan</label>
-                <input type="number" name="kelasAngkatan" id="kelasAngkatan" value="${kelas.angkatan}">
+                <input type="number" name="kelasAngkatan" id="kelasAngkatan" value="${k.angkatan}">
             </div>
             <div>
                 <button type="submit">Kirim</button>

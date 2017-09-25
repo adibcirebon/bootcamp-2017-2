@@ -38,7 +38,7 @@ public class KelasDao {
                 kelas.setAngkatan(r.getInt("angkatan"));
                 listKelas.add(kelas);
             }
-            
+
             r.close();
             s.close();
             koneksiDB.close();
@@ -65,6 +65,26 @@ public class KelasDao {
         }
     }
 
+    public Kelas cariKelasDenganId(Integer id) {
+        try {
+            Connection koneksi = KonfigDB.getDatasource().getConnection();
+            String sql = "select id, nama, angkatan from universitas.kelas where id = ?";
+            PreparedStatement ps = koneksi.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            Kelas kelas = new Kelas();
+            if (rs.next()) {
+                kelas.setId(rs.getInt("id"));
+                kelas.setNama(rs.getString("nama"));
+                kelas.setAngkatan(rs.getInt("angkatan"));
+            }
+            return kelas;
+        } catch (SQLException ex) {
+            Logger.getLogger(KelasDao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
     public void update(Kelas objKelas) {
         try {
             Connection koneksiDB = KonfigDB.getDatasource().getConnection();
@@ -79,6 +99,22 @@ public class KelasDao {
 
             ps.close();
             koneksiDB.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(KelasDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void hapusDataById(Integer id) {
+        String sql = "delete from universitas.kelas where id = ?";
+
+        try {
+            Connection conection = KonfigDB.getDatasource().getConnection();
+            PreparedStatement ps = conection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+            ps.close();
+            conection.close();
         } catch (SQLException ex) {
             Logger.getLogger(KelasDao.class.getName()).log(Level.SEVERE, null, ex);
         }

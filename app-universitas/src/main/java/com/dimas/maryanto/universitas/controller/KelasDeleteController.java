@@ -6,7 +6,6 @@
 package com.dimas.maryanto.universitas.controller;
 
 import com.dimas.maryanto.universitas.dao.KelasDao;
-import com.dimas.maryanto.universitas.model.Kelas;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,19 +17,22 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author dimmaryanto93
  */
-@WebServlet(urlPatterns = {"/kelas/new"})
-public class KelasAddFormController extends HttpServlet {
+@WebServlet(urlPatterns = {"/kelas/delete"})
+public class KelasDeleteController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        super.doPost(req, resp); //To change body of generated methods, choose Tools | Templates.
-        Kelas kelasBaru = new Kelas();
-        kelasBaru.setNama(req.getParameter("kelasName"));
-        kelasBaru.setAngkatan(Integer.valueOf(req.getParameter("kelasAngkatan")));
-
+        Integer idKelas = Integer.valueOf(req.getParameter("kelasId"));
         KelasDao kelasDao = new KelasDao();
-        kelasDao.save(kelasBaru);
+        kelasDao.hapusDataById(idKelas);
+        resp.sendRedirect(req.getServletContext().getContextPath() + "/kelas/list");
+    }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Integer idKelas = Integer.valueOf(req.getParameter("kelasId"));
+        KelasDao kelasDao = new KelasDao();
+        kelasDao.hapusDataById(idKelas);
         resp.sendRedirect(req.getServletContext().getContextPath() + "/kelas/list");
     }
 

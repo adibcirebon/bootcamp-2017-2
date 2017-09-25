@@ -18,18 +18,33 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author dimmaryanto93
  */
-@WebServlet(urlPatterns = {"/kelas/new"})
-public class KelasAddFormController extends HttpServlet {
+@WebServlet(urlPatterns = {"/kelas/update"})
+public class KelasUpdateController extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        super.doGet(req, resp); //To change body of generated methods, choose Tools | Templates.
+        Kelas kelas = new Kelas();
+        kelas.setId(Integer.valueOf(req.getParameter("id")));
+
+        KelasDao kelasDao = new KelasDao();
+        kelas = kelasDao.cariKelasDenganId(kelas.getId());
+
+        req.setAttribute("k", kelas);
+        req.getRequestDispatcher("/pages/kelas/updateKelas.jsp").forward(req, resp);
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doPost(req, resp); //To change body of generated methods, choose Tools | Templates.
+
         Kelas kelasBaru = new Kelas();
+        kelasBaru.setId(Integer.valueOf(req.getParameter("kelasId")));
         kelasBaru.setNama(req.getParameter("kelasName"));
         kelasBaru.setAngkatan(Integer.valueOf(req.getParameter("kelasAngkatan")));
 
         KelasDao kelasDao = new KelasDao();
-        kelasDao.save(kelasBaru);
+        kelasDao.update(kelasBaru);
 
         resp.sendRedirect(req.getServletContext().getContextPath() + "/kelas/list");
     }
