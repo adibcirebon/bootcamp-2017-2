@@ -5,10 +5,7 @@ import com.dimas.maryanto.universitas.model.Jurusan;
 import com.dimas.maryanto.universitas.model.Kelas;
 import com.dimas.maryanto.universitas.model.Mahasiswa;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,6 +58,26 @@ public class MahasiswaDao {
             error.printStackTrace();
         }
         return listMahasiswa;
+    }
+
+
+    public void simpanMahasiswa(Mahasiswa mhs) {
+        String sql = "insert into universitas.mahasiswa (nim, nama, kelas, jurusan) " +
+                "values (?, ?, ?, ?)";
+        try {
+            Connection connection = KonfigDB.getDatasource().getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, Integer.valueOf(mhs.getNim()));
+            ps.setString(2, mhs.getNama());
+            ps.setInt(3, mhs.getKelas().getId());
+            ps.setInt(4, mhs.getJurusan().getId());
+            ps.executeUpdate();
+
+            ps.close();
+            connection.close();
+        } catch (SQLException error) {
+            error.printStackTrace();
+        }
     }
 
 }
