@@ -1,16 +1,16 @@
 package com.maryanto.dimas.springdi;
 
-import com.maryanto.dimas.springdi.no.spring.KelasDao;
-import com.maryanto.dimas.springdi.spring.KonfigurasiSpring;
+import com.maryanto.dimas.springdi.no.spring.InnerKoneksi;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+@SpringBootApplication
 public class SpringDependencyInjectionApplication {
 
     public static void main(String[] x) {
-        ApplicationContext springContainer = new AnnotationConfigApplicationContext(KonfigurasiSpring.class);
-        KelasDao ke = springContainer.getBean(KelasDao.class);
-        ke.save();
-
+        ApplicationContext springContext = SpringApplication.run(SpringDependencyInjectionApplication.class, x);
+        InnerKoneksi innerKoneksi = springContext.getBean("innerKoneksi", InnerKoneksi.class);
+        System.out.println(innerKoneksi.getSayHalo());
     }
 }

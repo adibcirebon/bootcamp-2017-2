@@ -1,6 +1,5 @@
 package com.maryanto.dimas.springdi.no.spring;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +13,9 @@ public class Koneksi {
     private final String username;
     private final String password;
 
-//    construkter inject
-    public Koneksi(@Qualifier("getUrl") String url, @Qualifier("getUsername") String username,@Value("bootcamp") String password) {
-        this.url = url;
+    ////    construkter inject
+    public Koneksi(@Value("getUrl") String x, @Value("getUsername") String username, @Value("bootcamp") String password) {
+        this.url = x;
         this.username = username;
         this.password = password;
     }
