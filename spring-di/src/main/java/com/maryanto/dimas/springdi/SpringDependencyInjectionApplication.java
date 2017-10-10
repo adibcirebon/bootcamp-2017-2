@@ -1,12 +1,15 @@
 package com.maryanto.dimas.springdi;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.maryanto.dimas.springdi.no.spring.KelasDao;
+import com.maryanto.dimas.springdi.spring.KonfigurasiSpring;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@SpringBootApplication
 public class SpringDependencyInjectionApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringDependencyInjectionApplication.class, args);
-	}
+    public static void main(String[] x) {
+        ApplicationContext springContainer = new AnnotationConfigApplicationContext(KonfigurasiSpring.class);
+        KelasDao kelasDao = springContainer.getBean(KelasDao.class);
+        kelasDao.save();
+    }
 }
