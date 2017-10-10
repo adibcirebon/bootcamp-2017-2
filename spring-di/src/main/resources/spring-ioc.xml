@@ -4,9 +4,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!--kelasDao-->
     <bean class="com.maryanto.dimas.springdi.no.spring.KelasDao">
         <property name="koneksi" ref="koneksi"/>
     </bean>
+
 
     <bean class="com.maryanto.dimas.springdi.no.spring.Koneksi" name="koneksi" id="koneksi">
         <constructor-arg name="url" value="laksdjfsdf"/>
