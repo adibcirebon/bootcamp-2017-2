@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="java.lang.String" id="sayHalo" name="sayHalo">
+        <constructor-arg name="value" value="Halo ini dari spring IOC"></constructor-arg>
+    </bean>
+
+    <bean class="com.maryanto.dimas.spring.di.Superman" name="superman">
+        <property name="nembak" value="false"></property>
+        <property name="terbang" value="true"></property>
+    </bean>
+
+    <bean class="com.maryanto.dimas.spring.di.Superman" name="wonderWomen">
+        <property name="nembak" value="true"></property>
+        <property name="terbang" value="true"></property>
+    </bean>
+
+</beans>
