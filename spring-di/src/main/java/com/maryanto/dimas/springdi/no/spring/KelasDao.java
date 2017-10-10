@@ -1,25 +1,23 @@
 package com.maryanto.dimas.springdi.no.spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class KelasDao {
+    @Autowired
     Koneksi koneksi;
 
-    public KelasDao(Koneksi koneksi) {
-        this.koneksi = koneksi;
-    }
-
-    public KelasDao() {
-    }
-
-//    setter injection
-    public void setKoneksi(Koneksi koneksi) {
-        this.koneksi = koneksi;
-    }
+    @Autowired
+    InnerKoneksi innerKoneksi;
 
     public void save() {
         System.out.println(koneksi.getKoneksi());
+        System.out.println(innerKoneksi.getSayHalo());
+        System.out.println(innerKoneksi.getInnerInInnerKoneksi().getSayHalo());
     }
 
-    public void delete(){
+    public void delete() {
         //lkasjdfkljasdf
     }
 }

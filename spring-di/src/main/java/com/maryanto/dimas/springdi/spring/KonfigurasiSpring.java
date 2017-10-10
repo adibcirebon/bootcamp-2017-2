@@ -1,38 +1,28 @@
 package com.maryanto.dimas.springdi.spring;
 
-import com.maryanto.dimas.springdi.no.spring.KelasDao;
-import com.maryanto.dimas.springdi.no.spring.Koneksi;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
-
-import java.util.UUID;
 
 @Configuration
+@ComponentScan(basePackages = "com.maryanto.dimas.springdi.no.spring")
 public class KonfigurasiSpring {
 
-    @Value("jdbc")
-    public String url;
-    @Value("user")
-    public String username;
-    @Value("pasword")
-    public String password;
-
     @Bean
-    @Scope("prototype")
-    public String message(){
-        return UUID.randomUUID().toString();
+    public String getUrl(){
+        return "jdbc:postgresql://localhost:5432/bootcamp_2";
     }
 
     @Bean
-    public Koneksi getKoneksi() {
-        return new Koneksi(url, username, password);
+    public String getUsername(){
+        return "bootcamp_2";
     }
 
     @Bean
-    @Scope("prototype")
-    public KelasDao getKelasDao(Koneksi koneksi) {
-        return new KelasDao(koneksi);
+    public String getPassword(){
+        return "jdbc:postgresql://localhost:5432/bootcamp_2";
     }
+
+
+
 }
