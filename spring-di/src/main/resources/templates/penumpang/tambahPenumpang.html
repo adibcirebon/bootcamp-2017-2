@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Tambah Data Penumpang</title>
+</head>
+<body>
+<!--/*@thymesVar id="penpg" type="com.maryanto.dimas.springdi.ApplicationKe5.Penumpang"*/-->
+<form th:method="post" th:action="@{/penumpang/new}" th:object="${penpg}">
+    <div>
+        <label for="namaPenumpang">Nama Penumpang</label>
+        <input type="text" name="namaPenumpang" id="namaPenumpang" th:field="*{nama}"/>
+    </div>
+    <div>
+        <label for="nomorTelp">Nomor Telp</label>
+        <input type="text" name="nomorTelp" id="nomorTelp" th:field="*{nomorTelp}"/>
+    </div>
+    <div>
+        <label for="alamat">Alamat</label>
+        <textarea name="alamat" id="alamat" th:field="*{alamat}"></textarea>
+    </div>
+    <div>
+        <button type="submit">Kirim</button>
+    </div>
+</form>
+</body>
+</html>

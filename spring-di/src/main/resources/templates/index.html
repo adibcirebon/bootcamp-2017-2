@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset=" UTF-8"/>
+    <title>Belajar Spring Web MVC</title>
+</head>
+<body>
+<!--/*@thymesVar id="sayHalo" type="com.maryanto.dimas.springdi.controller.IndexController"*/-->
+<h1 th:text="${sayHalo}">Hello World</h1>
+
+<table>
+    <thead>
+    <tr>
+        <td>No</td>
+        <td>Nama Penumpang</td>
+        <td>Nama Supir</td>
+        <td>Nomor Polisi</td>
+        <td>Jam Berangkat</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <!--/*@thymesVar id="tiket" type="com.maryanto.dimas.springdi.ApplicationKe5.Tiket"*/-->
+    <!--/*@thymesVar id="listTiket" type="com.maryanto.dimas.springdi.controller.IndexController"*/-->
+    <tr th:each="tiket,iterStat : ${listTiket}">
+        <td th:text="${iterStat.count}">1</td>
+        <td th:text="${tiket.penumpang.nama}">Asep</td>
+        <td th:text="${tiket.travel.namaSupir}">Dimas</td>
+        <td th:text="${tiket.travel.nomorPolisi}">D 0012 ZB</td>
+        <td th:text="${tiket.jadwal}">2017-07-20 10:00</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
