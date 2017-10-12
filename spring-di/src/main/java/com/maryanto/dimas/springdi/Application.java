@@ -3,12 +3,9 @@ package com.maryanto.dimas.springdi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 
-@SpringBootApplication
+//@SpringBootApplication
 public class Application {
 
     public static void main(String[] x) {
@@ -17,17 +14,17 @@ public class Application {
         System.out.println(bean.umurSaya());
     }
 
-    @Bean
+    //    @Bean
     public Integer umur() {
         return 20;
     }
 
-    @Bean(name = "umurKe25")
+    //    @Bean(name = "umurKe25")
     public Integer umur25() {
         return 25;
     }
 
-    @Component
+    //    @Component
     public class UmurSaya {
 
         @Autowired
