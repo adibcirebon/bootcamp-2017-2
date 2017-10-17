@@ -1,0 +1,11 @@
+h1 {
+    background-color: red;
+    color: #f8fbff;
+    font-size: 50px;
+    text-align: center;
+    font-family: MACGrande, sans-serif, "Times New Roman";
+}
+
+h1.text-besar {
+    font-style: italic;
+}

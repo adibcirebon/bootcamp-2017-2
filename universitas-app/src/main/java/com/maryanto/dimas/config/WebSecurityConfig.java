@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,26 +15,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
-//        super.configure(web);
-        web.debug(true);
-    }
-
-//    @Bean
-//    @Autowired
-//    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-//        manager.createUser(
-//                User.withUsername("user").password(passwordEncoder.encode("user123"))
-//                        .roles("USER").roles("OPERATOR").build());
-//        return manager;
-//    }
-
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        super.configure(http);
         http.csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/mahasiswa/new").hasRole("OPERATOR")
                 .antMatchers("/daftar/new").access("hasRole('ADMIN') or hasRole('OPERATOR')")
                 .anyRequest().authenticated()
