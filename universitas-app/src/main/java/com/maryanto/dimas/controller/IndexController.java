@@ -10,4 +10,9 @@ public class IndexController {
     public String indexHtml() {
         return "/index";
     }
+
+    @GetMapping("/login-form")
+    public String showFormLogin() {
+        return "/login";
+    }
 }
