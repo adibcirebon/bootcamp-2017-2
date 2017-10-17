@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Tambah mahasiswa</title></head>
+<body>
+<form action="">
+    <div>
+        <label for="nim">NIM</label>
+        <input type="text" name="nim" id="nim"/>
+    </div>
+    <div>
+        <label for="nama">Nama</label>
+        <input type="text" name="nama" id="nama"/>
+    </div>
+    <div>
+        <label for="semester">Semestare</label>
+        <select name="semester" id="semester">
+            <option th:each="smt : ${#numbers.sequence(1,12)}" value="1" th:value="${smt}">
+                Semester <span th:text="${smt}">1</span>
+            </option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Kirim</button>
+    </div>
+
+</form>
+
+</body>
+</html>

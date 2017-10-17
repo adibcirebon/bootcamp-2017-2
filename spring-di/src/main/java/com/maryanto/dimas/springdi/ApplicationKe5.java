@@ -1,19 +1,15 @@
 package com.maryanto.dimas.springdi;
 
-import com.maryanto.dimas.springdi.repository.PenumpangRepository;
-import com.maryanto.dimas.springdi.repository.TiketRepository;
-import com.maryanto.dimas.springdi.repository.TravelRepository;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,31 +18,32 @@ public class ApplicationKe5 {
 
     public static void main(String[] args) {
 
-        ApplicationContext springContext = SpringApplication.run(ApplicationKe5.class, args);
-        TiketRepository tiketRepository = springContext.getBean(TiketRepository.class);
-        PenumpangRepository penumpangRepository = springContext.getBean(PenumpangRepository.class);
-        TravelRepository travelRepository = springContext.getBean(TravelRepository.class);
+        SpringApplication.run(ApplicationKe5.class, args);
+//        ApplicationContext springContext =  SpringApplication.run(ApplicationKe5.class, args);
+//        TiketRepository tiketRepository = springContext.getBean(TiketRepository.class);
+//        PenumpangRepository penumpangRepository = springContext.getBean(PenumpangRepository.class);
+//        TravelRepository travelRepository = springContext.getBean(TravelRepository.class);
 
-        Penumpang penumpang1 = penumpangRepository.save(new Penumpang(null, "dimas", "jl.", "0823", null));
-        System.out.println(penumpang1.toString());
-
-        Travel travel1 = travelRepository.save(new Travel(null, "dimas", "09834", "jl", "dlkasdjf", null));
-
-        tiketRepository.save(new Tiket(null, penumpang1, travel1, Timestamp.valueOf(LocalDateTime.now())));
-
-        Penumpang penumpang2 = penumpangRepository.save(new Penumpang(null, "dimas", "jl.", "0823", null));
-        System.out.println(penumpang1.toString());
-
-        Travel travel2 = travelRepository.save(new Travel(null, "dimas", "09834", "jl", "dlkasdjf", null));
-
-        tiketRepository.save(new Tiket(null, penumpang2, travel2, Timestamp.valueOf(LocalDateTime.now())));
-
-        Penumpang penumpang3 = penumpangRepository.save(new Penumpang(null, "dimas", "jl.", "0823", null));
-        System.out.println(penumpang1.toString());
-
-        Travel travel3 = travelRepository.save(new Travel(null, "dimas", "09834", "jl", "dlkasdjf", null));
-
-        tiketRepository.save(new Tiket(null, penumpang3, travel3, Timestamp.valueOf(LocalDateTime.now())));
+//        Penumpang penumpang1 = penumpangRepository.save(new Penumpang(null, "dimas", "jl.", "0823", null));
+//        System.out.println(penumpang1.toString());
+//
+//        Travel travel1 = travelRepository.save(new Travel(null, "dimas", "09834", "jl", "dlkasdjf", null));
+//
+//        tiketRepository.save(new Tiket(null, penumpang1, travel1, Timestamp.valueOf(LocalDateTime.now())));
+//
+//        Penumpang penumpang2 = penumpangRepository.save(new Penumpang(null, "dimas", "jl.", "0823", null));
+//        System.out.println(penumpang1.toString());
+//
+//        Travel travel2 = travelRepository.save(new Travel(null, "dimas", "09834", "jl", "dlkasdjf", null));
+//
+//        tiketRepository.save(new Tiket(null, penumpang2, travel2, Timestamp.valueOf(LocalDateTime.now())));
+//
+//        Penumpang penumpang3 = penumpangRepository.save(new Penumpang(null, "dimas", "jl.", "0823", null));
+//        System.out.println(penumpang1.toString());
+//
+//        Travel travel3 = travelRepository.save(new Travel(null, "dimas", "09834", "jl", "dlkasdjf", null));
+//
+//        tiketRepository.save(new Tiket(null, penumpang3, travel3, Timestamp.valueOf(LocalDateTime.now())));
 
     }
 
@@ -55,7 +52,6 @@ public class ApplicationKe5 {
     @NoArgsConstructor
     @Entity
     @Table(name = "tbl_tiket", schema = "travel")
-//    @SequenceGenerator()
     public static class Tiket {
         @Id
         @GeneratedValue
@@ -83,6 +79,7 @@ public class ApplicationKe5 {
         private String nama;
         private String alamat;
         private String nomorTelp;
+        @JsonIgnore
         @OneToMany(mappedBy = "penumpang")
         private List<Tiket> daftarTiket = new ArrayList<>();
     }
@@ -101,6 +98,7 @@ public class ApplicationKe5 {
         private String nomorTelp;
         private String alamat;
         private String nomorPolisi;
+        @JsonIgnore
         @OneToMany(mappedBy = "travel")
         private List<Tiket> daftarTiket = new ArrayList<>();
     }

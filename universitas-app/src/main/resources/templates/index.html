@@ -1,0 +1,27 @@
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Application</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
+          th:href="@{/webjars/materializecss/0.100.2/css/materialize.min.css}"/>
+</head>
+<body>
+<h1>
+    Hamalan Utama
+</h1>
+
+<h1 class="text-besar">
+    Masldfjlskdjf
+</h1>
+
+<button class="waves-effect waves-light btn red">
+    <span class="purple accent-1">Kirim</span>
+</button>
+
+<div sec:authorize="isAuthenticated()">
+    <!--yang tampil udah login-->
+    Nama User yang login: <p sec:authentication="name">User</p><br/>
+    Rolenya : <p sec:authentication="authorities">ROLE_USER</p>
+</div>
+</body>
+</html>
